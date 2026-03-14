@@ -68,11 +68,7 @@ app.post('/notify',(req,res)=>{
         io.emit(event, data);
     }
 
-    // if (event === "order-assigned" || event === "order-status-update" || event === "remove-assignment") {
-    //     io.emit(event, data);
-    // }
-
-    if (event === "order-assigned" || event === "order-status-update") {
+    if (event === "order-assigned" || event === "order-status-update" || event === "remove-assignment") {
         io.emit(event, data);
     }
 
