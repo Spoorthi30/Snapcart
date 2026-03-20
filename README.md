@@ -37,23 +37,23 @@ A premium feel achieved through **Framer Motion** animations, including staggere
 1. **Clone the repository:**
    git clone [https://github.com/Spoorthi30/Snapcart.git](https://github.com/Spoorthi30/Snapcart.git)
 
-2.**Install dependencies:**
-  # For the Next.js Frontend
-  cd snapcart
-  npm install
+2. **Install dependencies:**
+   # For the Next.js Frontend
+   cd snapcart
+   npm install
   
-  # For the Socket Server
-  cd ../socket
-  npm install
+   # For the Socket Server
+   cd ../socket
+   npm install
 
-3.**Environment Variables:**
-  Create a .env file in both folders and add your MongoDB URI, NextAuth Secret, and API Keys.
+3. **Environment Variables:**
+   Create a .env file in both folders and add your MongoDB URI, NextAuth Secret, and API Keys.
 
-4.**Run the Project:**
-  # Start Socket Server
-  cd socket
-  npm run dev
+4. **Run the Project:**
+   # Start Socket Server
+   cd socket
+   npm run dev
   
-  # Start Next.js App
-  cd snapcart
-  nodemon index.js
+   # Start Next.js App
+   cd snapcart
+   nodemon index.js
