@@ -38,11 +38,11 @@ A premium feel achieved through **Framer Motion** animations, including staggere
    git clone [https://github.com/Spoorthi30/Snapcart.git](https://github.com/Spoorthi30/Snapcart.git)
 
 2. **Install dependencies:**
-   For the Next.js Frontend
+   # For the Next.js Frontend
    cd snapcart
    npm install
   
-   For the Socket Server
+   # For the Socket Server
    cd ../socket
    npm install
 
