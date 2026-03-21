@@ -4,6 +4,7 @@ import axios from 'axios'
 import { ArrowLeft, Loader, PlusCircle, Upload } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -30,6 +31,7 @@ const AddGrocery = () => {
     const [preview, setpreview] = useState<string | null>()
     const [backendImage, setBackendImage] = useState<File | null>()
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -64,7 +66,8 @@ const AddGrocery = () => {
             setBackendImage(null);
 
             setpreview(null);
-
+            router.refresh();
+            
             if (imageInputRef.current) {
                 imageInputRef.current.value = ""; 
             }

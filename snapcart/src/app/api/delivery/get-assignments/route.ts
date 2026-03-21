@@ -23,11 +23,13 @@ export async function GET(req:NextRequest) {
         // }).populate("order")
 
         const assignment = await DeliveryAssignment.find({
-            broadcastedTo : session?.user?.id,
+            broadcastedTo : userId,
             status:"broadcasted"
         }).populate({
             path :"order",
-            match : {rejectedBy : {$ne : userId}}
+            match : {
+                status : 'pending',
+                rejectedBy : {$ne : userId}}
         })
 
         const filterAssignment = assignment.filter((item)=>item.order !== null )

@@ -1,7 +1,9 @@
 import { auth } from "@/auth";
 import uploadCloudinary from "@/lib/cloudinary";
 import connectDB from "@/lib/db";
+import emitEventHandler from "@/lib/emitEventHandler";
 import Grocery from "@/models.ts/grocery.model";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest) {
@@ -31,6 +33,8 @@ export async function POST(req:NextRequest) {
         const grocery = await Grocery.create({
             name,category,unit,price,image:imageUrl
         })
+
+        await emitEventHandler("new-grocery-item",grocery)
 
         return NextResponse.json(
                 grocery,

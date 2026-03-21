@@ -41,14 +41,18 @@ const DeliveryBoy = ({earning}:{earning:number}) => {
     const [otpError, setOtpError] = useState("")
     const [sendOtpLoading, setSendOtpLoading] = useState(false)
     const [verifyOtpLoading, setVerifyOtpLoading] = useState(false)
+    const [isSyncing, setIsSyncing] = useState(false)
 
     const getAssignments = async() => {
+        setIsSyncing(true)
             try {
                 const result = await axios.get('/api/delivery/get-assignments')
                 // console.log(result.data)
                 setAssignments(result.data)
+                setIsSyncing(false)
             } catch (error:any) {
                 console.log(error)
+                setIsSyncing(false)
             }
         }
 
@@ -270,26 +274,56 @@ const DeliveryBoy = ({earning}:{earning:number}) => {
         )
     }
 
-    if (assignments.length > 0) {
+//     if (assignments.length > 0) {
+//     return (
+//         <div className="w-full min-h-screen bg-gray-50 p-4">
+//             <div className="max-w-3xl mx-auto">
+//                 <h2 className="font-bold mt-20 mb-4 text-2xl">New Delivery Assignments</h2>
+//                 {assignments.map((assignment, index) => (
+//                     <div key={index} className="p-5 bg-white rounded-xl shadow-md mb-4">
+//                         <p><b>Order Id</b> #{assignment?.order._id.slice(-6)}</p>
+//                         <p className="text-gray-600">{assignment.order.address.fullAddress}</p>
+//                         <div className="flex gap-3 mt-4">
+//                             <button 
+//                                 onClick={() => handleAccept(assignment._id)} 
+//                                 className="flex-1 bg-green-600 text-white rounded-lg py-2"
+//                             >
+//                                 Accept
+//                             </button>
+//                             <button onClick={()=>handleReject(assignment._id)} className="flex-1 bg-red-600 text-white rounded-lg py-2">Reject</button>
+//                         </div>
+//                     </div>
+//                 ))}
+//             </div>
+//         </div>
+//     );
+// }
+
+ if (isSyncing || assignments.length > 0) {
     return (
         <div className="w-full min-h-screen bg-gray-50 p-4">
             <div className="max-w-3xl mx-auto">
-                <h2 className="font-bold mt-20 mb-4 text-2xl">New Delivery Assignments</h2>
-                {assignments.map((assignment, index) => (
-                    <div key={index} className="p-5 bg-white rounded-xl shadow-md mb-4">
-                        <p><b>Order Id</b> #{assignment?.order._id.slice(-6)}</p>
-                        <p className="text-gray-600">{assignment.order.address.fullAddress}</p>
-                        <div className="flex gap-3 mt-4">
-                            <button 
-                                onClick={() => handleAccept(assignment._id)} 
-                                className="flex-1 bg-green-600 text-white rounded-lg py-2"
-                            >
-                                Accept
-                            </button>
-                            <button onClick={()=>handleReject(assignment._id)} className="flex-1 bg-red-600 text-white rounded-lg py-2">Reject</button>
+                <h2 className="font-bold mt-20 mb-4 text-2xl">
+                    {isSyncing ? "Checking for new orders..." : "New Delivery Assignments"}
+                </h2>
+                {isSyncing ? (
+                    <div className="flex justify-center py-10"><Loader className="animate-spin text-green-600"/></div>
+                ) : (
+                    assignments.map((assignment, index) => (
+                        <div key={index} className="p-5 bg-white rounded-xl shadow-md mb-4">
+                            <p><b>Order Id</b> #{assignment?.order._id.slice(-6)}</p>
+                            <p className="text-gray-600">{assignment.order.address.fullAddress}</p>
+                            <div className="flex gap-3 mt-4">                             <button 
+                                    onClick={() => handleAccept(assignment._id)} 
+                                    className="flex-1 bg-green-600 text-white rounded-lg py-2"
+                                >
+                                    Accept
+                                </button>
+                                <button onClick={()=>handleReject(assignment._id)} className="flex-1 bg-red-600 text-white rounded-lg py-2">Reject</button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
         </div>
     );

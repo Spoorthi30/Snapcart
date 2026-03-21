@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import connectDB from "@/lib/db";
+import emitEventHandler from "@/lib/emitEventHandler";
 import Grocery from "@/models.ts/grocery.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -19,6 +20,8 @@ export async function DELETE(req:NextRequest){
         const {groceryId} = await req.json()
 
         await Grocery.findByIdAndDelete(groceryId)
+
+        await emitEventHandler('item-deleted',groceryId)
 
         return NextResponse.json(
             {message:'Deleted successfully'},

@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import uploadCloudinary from "@/lib/cloudinary";
 import connectDB from "@/lib/db";
+import emitEventHandler from "@/lib/emitEventHandler";
 import Grocery from "@/models.ts/grocery.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -32,6 +33,8 @@ export async function POST(req:NextRequest) {
         const grocery = await Grocery.findByIdAndUpdate(groceryId,{
             name,category,unit,price,image:imageUrl
         },{new:true})
+
+        await emitEventHandler('item-updated',grocery)
 
         return NextResponse.json(
                 grocery,

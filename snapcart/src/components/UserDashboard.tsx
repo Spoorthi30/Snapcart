@@ -4,6 +4,7 @@ import CategorySlider from './CategorySlider'
 import connectDB from '@/lib/db'
 import Grocery from '@/models.ts/grocery.model'
 import GroceryItemCard, { IGrocery } from './GroceryItemCard'
+import GroceryList from './GroceryList'
 
 const UserDashboard = async({groceryList}:{groceryList:IGrocery[]}) => {
   await connectDB()
@@ -16,14 +17,15 @@ const UserDashboard = async({groceryList}:{groceryList:IGrocery[]}) => {
         <CategorySlider />
         <div className='w-[90%] md:w-[80%] mx-auto mt-10'>
           <h2 className='text-2xl md:text-3xl text-green-700 font-bold text-center mb-6'>Popular Grocery Items</h2>
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-6'>
+            {/* <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-6'> */}
               {/* {plainGrocery.map((item : IGrocery )=>(
                 <GroceryItemCard item={item} key={item._id}/>
               ))} */}
-              {groceryList.map((item : IGrocery )=>(
+              {/* {groceryList.map((item : IGrocery )=>(
                 <GroceryItemCard item={item} key={item._id}/>
-              ))}
-            </div>
+              ))} */}
+            {/* </div> */}
+            <GroceryList initialItems={groceryList}/>
         </div>
         
     </>
