@@ -45,9 +45,9 @@ A premium feel achieved through **Framer Motion** animations, including staggere
    cd snapcart
    npm install
   
-  #### For the Socket Server
-  cd ../socket
-  npm install
+   #### For the Socket Server
+   cd ../socket
+   npm install
 
 
 3. **Environment Variables:**
