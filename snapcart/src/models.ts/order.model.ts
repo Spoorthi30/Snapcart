@@ -32,6 +32,7 @@ export interface IOrder{
     createdAt? :Date
     updatedAt? :Date
     rejectedBy : mongoose.Types.ObjectId[]
+    stripeSessionId? : string
     deliveryOtp : string
     deliveryOtpVerify : boolean
     deliveredAt : Date
@@ -100,6 +101,11 @@ const orderSchema = new mongoose.Schema<IOrder>({
             default : []
         }
     ],
+    stripeSessionId : {
+        type : String,
+        unique : true,
+        sparse : true
+    },
     deliveryOtp : {
         type:String,
         default:null

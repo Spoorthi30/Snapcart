@@ -12,6 +12,7 @@ import DeliveryBoyChat from "./DeliveryBoyChat"
 import { Loader } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 export interface ILocation{
     latitude : number,
@@ -42,6 +43,7 @@ const DeliveryBoy = ({earning}:{earning:number}) => {
     const [sendOtpLoading, setSendOtpLoading] = useState(false)
     const [verifyOtpLoading, setVerifyOtpLoading] = useState(false)
     const [isSyncing, setIsSyncing] = useState(false)
+    const router = useRouter()
 
     const getAssignments = async() => {
         setIsSyncing(true)
@@ -195,6 +197,7 @@ const DeliveryBoy = ({earning}:{earning:number}) => {
             setActiveOrder(null)
             setOtp("");
             setShowOtpBox(false);
+            router.refresh();
             // setAssignments(prev => prev.filter(a => a.order._id !== activeOrder.order._id));
             await getAssignments();
             setVerifyOtpLoading(false)

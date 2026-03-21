@@ -36,13 +36,13 @@ export async function POST(req:NextRequest) {
             )
         }
 
-        const newOrder = await Order.create({
-            user : userID ,
-            items,
-            paymentMethod,
-            totalAmount,
-            address
-        })
+        // const newOrder = await Order.create({
+        //     user : userID ,
+        //     items,
+        //     paymentMethod,
+        //     totalAmount,
+        //     address
+        // })
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types : ["card"],
@@ -62,17 +62,19 @@ export async function POST(req:NextRequest) {
                 },
             ],
             metadata : {
-                orderId : newOrder._id.toString()
+                // orderId : newOrder._id.toString()
 
-                // userID: userID.toString(),
-                // address: JSON.stringify(address),
-                // // We store just IDs or a simplified string to stay under the character limit
-                // cartItems: JSON.stringify(items.map((item: CartItem) => ({
-                //     grocery: item.grocery,
-                //     quantity: item.quantity,
-                //     price: item.price,
-                //     name: item.name
-                // })))
+                userID: userID.toString(),
+                address: JSON.stringify(address),
+                // We store just IDs or a simplified string to stay under the character limit
+                cartItems: JSON.stringify(items.map((item: CartItem) => ({
+                    grocery: item.grocery,
+                    quantity: item.quantity,
+                    price: item.price,
+                    name: item.name,
+                    unit: item.unit,
+                    image: item.image
+                })))
             }
         })
 
