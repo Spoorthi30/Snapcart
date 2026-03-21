@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Snapcart - Full Stack AI-Powered Grocery Delivery
 
-## Getting Started
+Snapcart is a cutting-edge, full-stack grocery delivery platform built with the latest web technologies. It features real-time logistics, an intelligent AI communication layer, and a seamless user experience powered by modern animations.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend:** Next.js 16 (App Router), Tailwind CSS, Framer Motion
+- **Backend:** Node.js, Socket.io (Real-time events)
+- **Database:** MongoDB with Mongoose
+- **Authentication:** NextAuth.js
+- **Maps & Tracking:** Leaflet / Google Maps API for Live Tracking
+- **AI Integration:** Advanced AI Chat System (User ↔ Delivery Partner)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features
 
-## Learn More
+### 🗺️ Live Order Tracking
+Real-time map integration that allows users to track their delivery partner's location from the store to their doorstep using **Socket.io** for low-latency updates.
 
-To learn more about Next.js, take a look at the following resources:
+### 🤖 AI-Powered Chat System
+An advanced communication bridge between the User and the Delivery Partner:
+- **Smart Suggestions:** AI suggests quick replies based on chat context.
+- **Auto-Translation:** Real-time translation for diverse delivery teams.
+- **Sentiment Analysis:** Ensures professional and helpful communication.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔐 Secure Authentication
+Robust user and partner authentication using **NextAuth**, supporting Social Logins and secure JWT-based sessions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🎭 Fluid User Interface
+A premium feel achieved through **Framer Motion** animations, including staggered list entries, smooth page transitions, and interactive gesture-based components.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Installation & Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Spoorthi30/Snapcart.git](https://github.com/Spoorthi30/Snapcart.git)
+
+2. **Install dependencies::**
+   #### For the Next.js Frontend
+   cd snapcart
+   npm install
+  
+   #### For the Socket Server
+   cd ../socket
+   npm install
+
+
+3. **Environment Variables:**
+    Create a .env file in both the snapcart and socket folders and add your MongoDB URI, NextAuth Secret, and API Keys.
+
+4. **Run the Project:**
+   #### Start Socket Server
+   cd socket
+   npm run dev
+
+   #### Start Next.js App
+   cd snapcart
+   npm run dev
